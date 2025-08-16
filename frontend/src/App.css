@@ -1,0 +1,73 @@
+/* App-wide utility styles */
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.coming-soon {
+  text-align: center;
+  padding: 80px 40px;
+  background: var(--card-background);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  margin: 40px 0;
+}
+
+.coming-soon h1 {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  color: var(--text-color);
+}
+
+.coming-soon p {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+}
+
+.placeholder-content {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: right;
+}
+
+.feature-preview h3 {
+  color: var(--text-color);
+  margin-bottom: 16px;
+}
+
+.feature-preview ul {
+  list-style: none;
+  padding: 0;
+}
+
+.feature-preview li {
+  padding: 8px 0;
+  color: var(--text-secondary);
+  position: relative;
+  padding-right: 24px;
+}
+
+.feature-preview li::before {
+  content: "✨";
+  position: absolute;
+  right: 0;
+  top: 8px;
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
+  
+  .coming-soon {
+    padding: 40px 20px;
+  }
+  
+  .coming-soon h1 {
+    font-size: 1.5rem;
+  }
+}
