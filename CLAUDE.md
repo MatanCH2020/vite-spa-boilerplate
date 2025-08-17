@@ -16,7 +16,7 @@ This is a Hebrew RTL web application for creating AI-powered family photo albums
 ```bash
 cd backend
 npm install                    # Install dependencies
-npm run dev                    # Development server with nodemon
+npm run dev                    # Development server with nodemon (port 5000)
 npm start                      # Production server
 npm run migrate               # Run database migrations
 npm test                      # Run tests (placeholder)
@@ -30,6 +30,15 @@ npm run dev                    # Development server (port 5173)
 npm run build                  # Production build
 npm run preview                # Preview production build
 npm run lint                   # ESLint checking
+```
+
+### Database Setup
+```bash
+# Create PostgreSQL database
+createdb family_albums
+
+# Run migrations (from backend directory)
+npm run migrate
 ```
 
 ### Quick Start (Full Application)
@@ -64,13 +73,33 @@ cd frontend && npm install && npm run dev
 - **Security**: Helmet, CORS, rate limiting, bcryptjs password hashing
 - **Logging**: Morgan for HTTP request logging
 
+**Express Configuration**:
+- JSON payload limit: 50MB (for large image uploads)
+- CORS enabled with credentials for frontend URL
+- Combined logging format with Morgan
+- Error handling with Hebrew error messages
+- Health check endpoint at `/health`
+
 ### Database Schema
 Core entities: `users -> families -> family_members -> images -> albums`
 - Users own families (1:many)
-- Families contain members (1:many)
+- Families contain members (1:many)  
 - Members have multiple images (1:many)
 - Families generate albums (1:many)
 - Training jobs track AI model creation per member
+
+**Key Tables**:
+- `users`: Email, name, password_hash with auto-timestamps
+- `families`: Linked to user, has status (draft/training/processing/completed/failed)
+- `family_members`: Name, role (dad/mom/child), avatar_url
+- `images`: URLs, filenames, AI analysis_data (JSONB), quality_score
+- `albums`: Style types, status, result_urls (JSONB), metadata (JSONB)
+- `training_jobs`: Replicate API integration, model URLs, error tracking
+
+**Database Features**:
+- Automatic updated_at triggers on all main tables
+- Performance indexes on foreign keys and query-heavy columns
+- JSONB fields for flexible metadata and AI analysis data
 
 ### Hebrew RTL Implementation
 - **HTML**: `dir="rtl"` and `lang="he"` attributes
@@ -107,6 +136,7 @@ FRONTEND_URL=http://localhost:5173
 **Frontend (.env)**:
 ```env
 VITE_API_URL=http://localhost:5000/api
+VITE_CLOUDINARY_CLOUD_NAME=your-cloud-name
 ```
 
 ### Database Operations
@@ -119,9 +149,11 @@ Migration script is embedded in package.json (`npm run migrate`). Requires Postg
 ### API Service Pattern
 Frontend uses centralized API service (`services/api.js`) with:
 - Automatic JWT token attachment
-- Response/request interceptors
-- Structured endpoint organization by feature area
-- Automatic 401 handling for token expiration
+- Response/request interceptors  
+- Structured endpoint organization by feature area (`authAPI`, `familyAPI`, `uploadAPI`, `trainingAPI`, `albumsAPI`)
+- Automatic 401 handling for token expiration with redirect to login
+- 30-second timeout for API requests
+- Multipart/form-data support for file uploads
 
 ### Component Organization
 - **Layout**: Header navigation with authentication state (`components/Layout/`)
@@ -137,6 +169,29 @@ Frontend uses centralized API service (`services/api.js`) with:
 - RTL utility classes
 - Responsive design with mobile-first approach
 - Hebrew-optimized typography and spacing
+
+## Development Workflow
+
+### Testing API Endpoints
+```bash
+# Health check
+curl http://localhost:5000/health
+
+# Test API connectivity
+curl http://localhost:5000/api/test
+```
+
+### Database Connection Testing
+The backend automatically tests PostgreSQL connection on startup and logs connection status. If database connection fails, check:
+1. PostgreSQL service is running
+2. Database `family_albums` exists
+3. Environment variables in `.env` match your PostgreSQL setup
+
+### Debugging State Management
+Frontend uses React Context with useReducer. Debug state in browser dev tools:
+- React DevTools: View AppContext state
+- localStorage: Check for `token` key
+- Network tab: Verify API requests include Authorization header
 
 ## Future Development Phase
 

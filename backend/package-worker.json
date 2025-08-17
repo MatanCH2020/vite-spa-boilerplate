@@ -1,0 +1,38 @@
+{
+  "name": "ai-family-album-backend-worker",
+  "version": "1.0.0",
+  "description": "Cloudflare Worker version of AI Family Photo Album backend",
+  "main": "worker.js",
+  "type": "module",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "preview": "wrangler dev --remote",
+    "migrate:d1": "wrangler d1 execute family-albums-db --file=migrations/d1-schema.sql"
+  },
+  "keywords": [
+    "ai",
+    "family",
+    "photos",
+    "album",
+    "hebrew",
+    "cloudflare",
+    "worker"
+  ],
+  "author": "AI Family Album Team",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cloudinary": "^2.7.0",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^8.0.1",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.1",
+    "multer": "^2.0.2"
+  },
+  "devDependencies": {
+    "wrangler": "^3.80.0"
+  }
+}
