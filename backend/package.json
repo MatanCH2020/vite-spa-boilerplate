@@ -1,20 +1,23 @@
 {
-  "name": "ai-family-album-backend",
+  "name": "ai-family-album-backend-worker",
   "version": "1.0.0",
-  "description": "Backend for AI Family Photo Album application",
-  "main": "server.js",
+  "description": "Cloudflare Worker version of AI Family Photo Album backend",
+  "main": "worker.js",
+  "type": "module",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js",
-    "migrate": "node -e \"const pool = require('./config/database'); const fs = require('fs'); const sql = fs.readFileSync('./migrations/001_initial_schema.sql', 'utf8'); pool.query(sql).then(() => { console.log('Migration completed successfully'); process.exit(0); }).catch(err => { console.error('Migration failed:', err); process.exit(1); });\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "preview": "wrangler dev --remote",
+    "migrate:d1": "wrangler d1 execute family-albums-db --file=migrations/d1-schema.sql"
   },
   "keywords": [
     "ai",
     "family",
     "photos",
     "album",
-    "hebrew"
+    "hebrew",
+    "cloudflare",
+    "worker"
   ],
   "author": "AI Family Album Team",
   "license": "ISC",
@@ -22,16 +25,14 @@
     "bcryptjs": "^3.0.2",
     "cloudinary": "^2.7.0",
     "cors": "^2.8.5",
-    "dotenv": "^17.2.1",
     "express": "^4.19.2",
     "express-rate-limit": "^8.0.1",
     "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.1",
-    "multer": "^2.0.2",
-    "pg": "^8.16.3"
+    "multer": "^2.0.2"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "wrangler": "^3.80.0"
   }
 }

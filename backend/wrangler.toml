@@ -1,5 +1,5 @@
 name = "ai-family-album-backend"
-main = "worker.js"
+main = "worker-simple.js"
 compatibility_date = "2024-03-01"
 compatibility_flags = ["nodejs_compat"]
 
@@ -9,7 +9,7 @@ NODE_ENV = "production"
 [[d1_databases]]
 binding = "DB"
 database_name = "family-albums-db"
-database_id = "your-d1-database-id"
+database_id = "63e2e246-60a4-4568-bdcb-a31a6dab78fa"
 
 [env.production]
 name = "ai-family-album-backend-prod"
