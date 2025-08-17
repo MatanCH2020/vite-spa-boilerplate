@@ -131,7 +131,67 @@
 }
 
 /* Mobile responsiveness */
+@media (max-width: 480px) {
+  /* Small mobile devices */
+  .header-container {
+    padding: 0 12px;
+    height: 52px;
+    flex-wrap: nowrap;
+  }
+  
+  .logo {
+    font-size: 1rem;
+    gap: 8px;
+    min-width: 0;
+    flex-shrink: 0;
+  }
+  
+  .logo-icon {
+    font-size: 1.5rem;
+  }
+  
+  .logo-text {
+    display: none;
+  }
+  
+  .welcome-text {
+    display: none;
+  }
+  
+  .header-nav {
+    gap: 4px;
+    flex-shrink: 0;
+  }
+  
+  .guest-nav {
+    gap: 4px;
+  }
+  
+  .auth-nav {
+    gap: 4px;
+  }
+  
+  .nav-link {
+    padding: 8px 12px;
+    font-size: 14px;
+    min-height: 40px;
+    border-radius: 6px;
+    white-space: nowrap;
+  }
+  
+  .logout-btn {
+    padding: 8px 12px;
+    font-size: 14px;
+    min-height: 40px;
+  }
+  
+  .main-content {
+    padding: 8px 0;
+  }
+}
+
 @media (max-width: 768px) {
+  /* Larger mobile devices and tablets */
   .header-container {
     padding: 0 16px;
     height: 56px;
@@ -150,7 +210,92 @@
   }
   
   .nav-link {
+    padding: 8px 16px;
+    font-size: 15px;
+    min-height: 44px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .logout-btn {
+    min-height: 44px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@media (max-width: 1024px) {
+  /* Tablet landscape */
+  .header-container {
+    padding: 0 20px;
+  }
+}
+
+/* Touch improvements for all mobile devices */
+@media (max-width: 768px) {
+  .nav-link:hover {
+    /* Remove hover effects on touch devices */
+    background-color: transparent;
+    color: var(--text-color);
+  }
+  
+  .nav-link:active {
+    background-color: var(--background-color);
+    color: var(--primary-color);
+  }
+  
+  .nav-link.primary:hover {
+    background-color: var(--primary-color);
+    color: white;
+  }
+  
+  .nav-link.primary:active {
+    background-color: var(--primary-hover);
+    color: white;
+  }
+  
+  .logout-btn:hover {
+    border-color: var(--border-color);
+    color: var(--text-color);
+    background-color: transparent;
+  }
+  
+  .logout-btn:active {
+    border-color: var(--error-color);
+    color: var(--error-color);
+    background-color: rgba(239, 68, 68, 0.1);
+  }
+}
+
+/* Safe area adjustments for notched devices */
+@supports (padding: max(0px)) {
+  .app-header {
+    padding-left: max(12px, env(safe-area-inset-left));
+    padding-right: max(12px, env(safe-area-inset-right));
+  }
+  
+  .main-content {
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
+    padding-bottom: max(0px, env(safe-area-inset-bottom));
+  }
+}
+
+/* Landscape mode adjustments */
+@media (orientation: landscape) and (max-height: 600px) {
+  .header-container {
+    height: 48px;
+  }
+  
+  .nav-link {
     padding: 6px 12px;
-    font-size: 0.9rem;
+    font-size: 14px;
+    min-height: 36px;
+  }
+  
+  .logout-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+    min-height: 36px;
   }
 }
