@@ -1,0 +1,25 @@
+{
+  "name": "אלבום משפחתי בינה מלאכותית",
+  "short_name": "אלבום משפחתי AI",
+  "description": "יצירת אלבומי תמונות משפחתיים מותאמים אישית באמצעות בינה מלאכותית",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fafafa",
+  "theme_color": "#8b5cf6",
+  "dir": "rtl",
+  "lang": "he",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["photo", "family", "productivity"],
+  "screenshots": [],
+  "prefer_related_applications": false,
+  "scope": "/",
+  "id": "ai-family-album"
+}

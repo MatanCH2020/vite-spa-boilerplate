@@ -172,6 +172,15 @@ Frontend uses centralized API service (`services/api.js`) with:
 
 ## Development Workflow
 
+### Git Workflow Rules
+**MANDATORY**: After EVERY code change, modification, or file creation, Claude must:
+1. Switch to the `dev` branch (if not already on it)
+2. Stage all changes with `git add .`
+3. Commit changes with a descriptive message
+4. Push to `origin dev`
+
+This ensures all development work is properly tracked and backed up to the dev branch.
+
 ### Testing API Endpoints
 ```bash
 # Health check

@@ -52,7 +52,13 @@ const HomePage = () => {
           </div>
           <div className="hero-image">
             <div className="family-illustration">
-              <span className="family-emoji">👨‍👩‍👧‍👦</span>
+              <img 
+                src="/logo.png" 
+                alt="Family AI Album Logo" 
+                className="hero-logo"
+                loading="eager"
+                decoding="sync"
+              />
               <div className="magic-sparkles">✨</div>
             </div>
           </div>

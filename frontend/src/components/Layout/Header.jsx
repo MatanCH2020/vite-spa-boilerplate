@@ -15,7 +15,16 @@ const Header = () => {
     <header className="app-header">
       <div className="header-container">
         <Link to="/" className="logo">
-          <span className="logo-icon">👨‍👩‍👧‍👦</span>
+          <div className="logo-icon">
+            <img 
+              src="/logo.png" 
+              alt="Family AI Album Logo" 
+              width="48" 
+              height="48"
+              loading="eager"
+              decoding="sync"
+            />
+          </div>
           <span className="logo-text">אלבום משפחתי AI</span>
         </Link>
         
