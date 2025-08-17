@@ -19,8 +19,8 @@ const Header = () => {
             <img 
               src="/logo.png" 
               alt="Family AI Album Logo" 
-              width="32" 
-              height="32"
+              width="48" 
+              height="48"
               loading="eager"
               decoding="sync"
             />
